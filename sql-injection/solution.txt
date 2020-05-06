@@ -1,0 +1,9 @@
+In 11th line of server.py, you can see that SQL statement is created with string concatenation. This is vulnerable as
+client can manipulate it. One simple example is using `x' OR 1=1 -- Comment` for both username and password. By doing so,
+where statements will be commented out and the final SQL statement will be:
+
+SELECT * FROM USER WHERE password = 'x' OR 1=1 -- Commented' AND username = 'x' OR 1=1 -- Commented'
+
+which is equivalent to: SELECT * FROM USER WHERE password = 'x' OR 1=1.
+
+By doing so, we can make the server return a random user entry from the table and you will be considered as logged in.
