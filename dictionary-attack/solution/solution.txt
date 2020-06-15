@@ -1,0 +1,13 @@
+PART 1 - Finding the txt file:
+
+After investigating challenge.zip, one can notice that this is a recursive zip file and the names of the
+zip files follow a sequence and composed of increasing numbers which indicates depth. It would take too much time to unzip
+them one by one manually yet it can be easily automated (see unzip_recursively.sh). After the script is terminated, we end up with
+a file, final.zip. After running the command "less final.zip", it can be ensured that the hidden file is inside final.zip.
+
+PART 2 - Cracking the password:
+
+final.zip is protected with a weak (common) password as stated in README. Thus, its password can be cracked with a dictionary
+attack. To launch a dictionary attack, we suggest to use "fcrackzip" and "rockyou.txt" (as your dictionary). rockyou.txt is already
+added to "solution/source" directory. To see an example usage, one can refer to "crack_password.sh". As it is run, fcrackzip
+will show some possible passwords and the final.zip can be unzipped using one of them.

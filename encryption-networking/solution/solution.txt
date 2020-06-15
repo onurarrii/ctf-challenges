@@ -1,0 +1,14 @@
+As client.pyc is a compiled file, it cannot be read directly yet we can obtain clues out of it using 'strings' command.
+After running it, the following strings, which might be considered as clues, are obtained:
+
+    1. encrypted_token
+    2. z-http://dummy.restapiexample.com/api/v1/create
+
+From the first one, we can assume that the secret key might not be stored as a raw string (Note that, if they did store the key
+in raw string form, we could probably obtain it at this very step easily). On the other hand, second string might tell us where to send request
+to grant access (Note that it sends a request to a mock API. In normal circumstances, you would see server's uri here).
+
+In the second step, we need to watch the network traffic to see request's content. By using wireshark, and filtering
+HTTP requests, we can easily find the corresponding packet in which the secret key stored as an HTTP header.
+
+Note: The source code for client.pyc is client.py.
